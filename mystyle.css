@@ -1,0 +1,43 @@
+body {
+        background-color: pink;
+        font-family:"微軟正黑體";                  /* 粉色背景  字體:微軟正黑體*/
+}
+.round {
+    border-radius: 50%;                           /*圖片邊框圓弧設定*/
+}
+li {
+    font-size: 20px;                              /*字體及字體大小*/
+    font-weight: bold;
+}
+p{
+    font-size:20px;
+    font-weight: bold;                            /*字體及字體大小*/
+}
+div ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+    background-color: black;
+}
+div li{
+	float: left;                                  /*放在左邊*/
+}
+li a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px 14px ;
+	text-decoration: none;
+	background-color:black;                     /*連結顏色*/
+}
+
+li a:hover{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px 14px ;
+	text-decoration: none;
+	background-color:gray;
+}
+
