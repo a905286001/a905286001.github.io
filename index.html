@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Personal Profile</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+    <body>
+            <center><h1>個人簡介</h1></center>
+            <div>
+                <ul>
+                    <li><a href="#name">我的名</a></li>
+                    <li><a href="#learn">學歷</a></li>
+                    <li><a href="#club">社團經歷</a></li>
+                    <li><a href="#skill">專業技術及證照</a></li>
+                    <li><a href="#work">工作經歷</a></li>
+                    <li><a href="#me">自傳</a></li>
+                    <li><a href="#talent">小專長</a></li>
+                    <li><a href="#link">相關連結</a></li>
+                </ul>
+            </div>
+            <img class="round" src="不要瞎掰.jpg" alter="可愛的我" width=533px height=300px>
+            <hr color="black">
+            <h1><section id="name">～我的名～</section></h1>
+                <ul>
+                    <li>布萊德．基德</li>
+                </ul>
+            
+            <h1><section id="learn">～學歷～</section></h1>
+                <ul>
+                    <li>中央大學資管系(在學)</li>
+                    <li>佛光大學 (肄業)</li>
+                </ul>
+            <h1><section id="club">～社團經歷～</section></h1>
+                <table border="1" width="30%" >
+                    <thead></thead>
+                    <tr>
+                        <td>高中</td>
+                        <td>流行音樂社</td>
+                        <td>教學</td>
+                    </tr>
+                    <tr>
+                        <td>高中</td>
+                        <td>慈幼社</td>
+                        <td>社長</td>
+                    </tr>
+                    <tr>
+                        <td>大學</td>
+                        <td>中央資管迎新宿營</td>
+                        <td>值星</td>
+                    </tr>
+                </table>
+            <h1><section id="skill">～專業技術及證照～</section></h1>
+                <ul>
+                    <li>丙級烘焙食品技術士</li>
+                </ul>
 
+            <h1><section id="work">～工作經歷～</section></h1>
+                <ul>
+                    <li>1998~2001: 律師</li>
+                    <li>2005 6月: 按摩師</li>
+                    <li>2006~2008: 調查公司社長</li>
+                    <li>2010~2016: 賽車手</li>
+                    <li>2017~: 便利商店店員</li>
+                </ul>
+            <h1><section id="me">～自傳～</section></h1>
+            <p>如果別人做得到，那我也可以做到。這是影響我人生非常重要的一句話，還有我們要學會站在別人的角度思考，<br>才能了解到事件的全貌。但人生並非順遂，我們不得不面對一個非常尷尬的事實，那就是，在面對外人的欺騙，<br>要勇敢地大聲和外界抗衡，用一句簡單的「不要瞎掰好嗎。」，抵抗世界對我賞的耳光，這是我活了這麼多年的體悟。</p>
+
+            <h1><section id="talent">～小專長～</section></h1>
+            <p>略懂一些占卜的我，如果遇上有興趣的你，願意停下來聽我說個故事，我很樂意奉陪。</p>
+            <p>請在底下分享你的生日或者你喜歡的日期，這將成為我占卜的依據</p>
+            <input id="date" type="text" placeholder="ex.2021-06-17" value=""/>
+            <button type="button" onclick="myFunction()">我做好心理準備了</button>
+
+            <h1><section id="link">～相關連結～</section></h1>
+            <p>想更了解我歡迎你點這個<a href="https://github.com/a905286001" target="_blank">連結</a></p>
+    </body>
+    <script>
+		function myFunction(){
+			var request = new XMLHttpRequest();
+
+			var date = document.getElementById('date').value;
+			var re = new RegExp("^([0-9]{4})[.-]{1}([0-9]{2})[.-]{1}([0-9]{2})$");
+			var strDataValue;
+			var infoValidation = true;
+			if ((strDataValue = re.exec(date)) != null) {
+				var i;
+				i = parseFloat(strDataValue[1]);
+				if (i <= 0 || i > 9999) { /*年*/
+				infoValidation = false;
+				}
+				i = parseFloat(strDataValue[2]);
+				if (i <= 0 || i > 12) { /*月*/
+				infoValidation = false;
+				}
+				i = parseFloat(strDataValue[3]);
+				if (i <= 0 || i > 31) { /*日*/
+				infoValidation = false;
+				}
+			} else {
+				infoValidation = false;
+			}
+			if (!infoValidation) {
+				alert("你壞壞，不要亂輸入其他東西啦");
+				return;
+			}
+			
+
+			var result;
+			var sum = document.querySelector('.sum');
+			var onebit = document.querySelector('.bit');
+
+			
+			request.open('GET','https://api.coindesk.com/v1/bpi/historical/close.json?start='+date+'&end='+date,true);
+			
+			request.onload=function(){
+			
+				var data = JSON.parse(this.response);
+				bit = parseFloat(data.bpi[date]);
+                if(bit>=0){
+                    alert("你最近是不是做什麼壞事，會衰喔")
+                }
+						
+                
+			}
+			request.onerror=function(e){
+				console.log(e);
+				alert("你最近是不是做什麼壞事，會衰喔")
+			}
+			request.send();
+			
+		}
+		
+	
+	</script>
+</html>
