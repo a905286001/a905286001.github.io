@@ -8,7 +8,7 @@ def read_array(p):
 
         return np.array(data, dtype=int)
     
-# 先確認左右都有child  找parent children中最小值 (先比child min，再跟parent比) 
+
 def Heapify(i):
     
     l = 2*i+1
@@ -34,7 +34,7 @@ def extract_root():
 def insert(x):
     global n,A
     n = n+1
-    A = np.insert(A,n-1,x)
+    A = np.insert(A,n,x)
     for i in range(int(n/2),-1,-1):
         Heapify(i)
 
@@ -42,7 +42,8 @@ def insert(x):
 
 
 A = read_array(path)
-n = 999
+N = 1000
+n = N-1
 
 for i in range(int(n/2),-1,-1):
     Heapify(i)
@@ -62,7 +63,7 @@ insert(1014)
 extract_root()
 
 
-print(A[0:20])
-print(A[n-19:n+1])
+print(" Q2:","\n",A[0:20],"\n",A[n-19:n+1])
+
 
 
